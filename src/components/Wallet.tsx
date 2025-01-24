@@ -23,7 +23,6 @@ export const Wallet = ({ children }: { children: ReactNode }) => {
           (!authenticationStatus || authenticationStatus === "authenticated");
         return (
           <div
-            className="bg-[#00ACE3] md:px-4 md:py-2 rounded-md font-semibold md:mr-12"
             {...(!ready && {
               "aria-hidden": true,
               style: {
@@ -36,7 +35,11 @@ export const Wallet = ({ children }: { children: ReactNode }) => {
             {(() => {
               if (!connected) {
                 return (
-                  <button onClick={openConnectModal} type="button">
+                  <button
+                    className="flex h-[48px] min-w-[196px] flex-row items-center justify-center rounded-[24px] bg-gradient px-[34px] text-center text-[16px] font-medium text-midnight_black lg:text-[13px] sm:px-4"
+                    onClick={openConnectModal}
+                    type="button"
+                  >
                     {children}
                   </button>
                 );
