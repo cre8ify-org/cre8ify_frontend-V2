@@ -1,17 +1,19 @@
 "use client";
-import React, { HTMLAttributes } from "react";
+import React, { type HTMLAttributes } from "react";
 import { Radio } from "../Radio";
-type RadioGroupProps = Omit<
-  React.DetailedHTMLProps<HTMLAttributes<HTMLInputElement>, HTMLInputElement>,
-  "onChange"
-> &
+
+type RadioGroupProps = Omit<HTMLAttributes<HTMLInputElement>, "onChange"> &
   Partial<{
     selectedValue: string;
     orientation: string;
     name: string;
     disabled: boolean;
-    onChange: Function;
+    onChange: (
+      value: string,
+      event: React.ChangeEvent<HTMLInputElement>
+    ) => void;
   }>;
+
 const RadioGroup = React.forwardRef<HTMLInputElement, RadioGroupProps>(
   (
     {
@@ -27,9 +29,11 @@ const RadioGroup = React.forwardRef<HTMLInputElement, RadioGroupProps>(
     ref
   ) => {
     const [value, setValue] = React.useState(selectedValue);
+
     React.useEffect(() => {
       setValue(selectedValue);
     }, [selectedValue]);
+
     const handleChange = (
       event: React.ChangeEvent<HTMLInputElement>,
       val: string,
@@ -37,8 +41,9 @@ const RadioGroup = React.forwardRef<HTMLInputElement, RadioGroupProps>(
     ) => {
       if (isDisabled) return;
       setValue(val);
-      onChange && onChange(val, event);
+      onChange?.(val, event);
     };
+
     const compChildren = React.Children.map(children, (child: any) => {
       if (child?.type === Radio) {
         return React.cloneElement(child, {
@@ -53,12 +58,11 @@ const RadioGroup = React.forwardRef<HTMLInputElement, RadioGroupProps>(
       }
       return child;
     });
-    return (
-      <>
-        {" "}
-        <div className={className}>{compChildren}</div>{" "}
-      </>
-    );
+
+    return <div className={className}>{compChildren}</div>;
   }
 );
+
+RadioGroup.displayName = "RadioGroup";
+
 export { RadioGroup };

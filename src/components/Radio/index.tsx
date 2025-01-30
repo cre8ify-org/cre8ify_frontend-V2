@@ -1,12 +1,11 @@
 "use client";
 import React from "react";
-const variants = { primary: " checked:border-2 " } as const;
-const sizes = { xs: "text-[24px]" } as const;
+
+const variants = { primary: "checked:border-2" };
+const sizes = { xs: "text-2xl" };
+
 export type RadioProps = Omit<
-  React.DetailedHTMLProps<
-    React.InputHTMLAttributes<HTMLInputElement>,
-    HTMLInputElement
-  >,
+  React.InputHTMLAttributes<HTMLInputElement>,
   "size" | "prefix" | "type" | "onChange"
 > &
   Partial<{
@@ -17,6 +16,7 @@ export type RadioProps = Omit<
     variant: keyof typeof variants;
     size: keyof typeof sizes;
   }>;
+
 const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
   (
     {
@@ -31,21 +31,21 @@ const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
     ref
   ) => {
     return (
-      <label className={className + " undefined"}>
-        {" "}
+      <label className={className}>
         <input
-          className={` ${(size && sizes[size]) || ""} ${
-            (variant && variants[variant]) || ""
-          }`}
+          className={`${sizes[size]} ${variants[variant]}`}
           ref={ref}
           type="radio"
           name={name}
-          {...restProps}
           id={id}
-        />{" "}
-        <span>{label}</span>{" "}
+          {...restProps}
+        />
+        <span>{label}</span>
       </label>
     );
   }
 );
+
+Radio.displayName = "Radio";
+
 export { Radio };

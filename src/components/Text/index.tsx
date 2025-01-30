@@ -1,38 +1,29 @@
-import React from "react";
-const sizes = {
-  dm_sans_14: "text-[14px] font-normal",
-  dm_sans_24: "text-[24px] font-normal lg:text-[20px] md:text-[22px]",
-  textxs: "text-[20px] font-normal lg:text-[17px]",
-  textmd:
-    "text-[32px] font-normal lg:text-[27px] md:text-[30px] sm:text-[28px]",
-};
+import type React from "react";
+
+// const sizes = {
+//   dm_sans_14: "text-sm",
+//   dm_sans_24: "text-2xl lg:text-base md:text-2xl",
+//   textxs: "text-xl lg:text-lg",
+//   textmd: "text-3xl lg:text-2xl md:text-3xl sm:text-2xl",
+// };
+
 export type TextProps = Partial<{
   className: string;
-  as: any;
-  size: keyof typeof sizes;
+  as: React.ElementType;
 }> &
-  React.DetailedHTMLProps<
-    React.HTMLAttributes<HTMLSpanElement>,
-    HTMLSpanElement
-  >;
+  React.HTMLAttributes<HTMLElement>;
+
 const Text: React.FC<React.PropsWithChildren<TextProps>> = ({
   children,
   className = "",
-  as,
-  size = "dm_sans_24",
+  as: Component = "p",
   ...restProps
 }) => {
-  const Component = as || "p";
   return (
-    <Component
-      className={`text-tech_silver-0 font-dmsans ${className} ${
-        sizes[size as keyof typeof sizes]
-      } `}
-      {...restProps}
-    >
-      {" "}
-      {children}{" "}
+    <Component className={`font-dmsans ${className}`} {...restProps}>
+      {children}
     </Component>
   );
 };
+
 export { Text };

@@ -1,6 +1,6 @@
+import React from "react";
 import { Img } from "../Img";
 
-import React from "react";
 interface Props {
   className?: string;
   userImage?: string;
@@ -11,18 +11,14 @@ export default function UserProfileImage({
   ...props
 }: Props) {
   return (
-    <div
-      {...props}
-      className={`${props.className} flex flex-col w-full bg-gradient rounded-[16px]`}
-    >
-      {" "}
+    <div {...props} className={`bg-gradient rounded-2xl ${props.className}`}>
       <Img
         src={userImage}
         width={296}
         height={296}
-        alt="Imagefiftyfive"
-        className="h-[296px] w-full rounded-[16px] object-cover"
-      />{" "}
+        alt="User profile"
+        className="w-full h-[296px] rounded-2xl object-cover"
+      />
     </div>
   );
 }

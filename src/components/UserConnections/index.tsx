@@ -1,7 +1,7 @@
+import type React from "react";
 import { Img } from "../Img";
 import { Text } from "../Text";
 import { Heading } from "../Heading";
-import React from "react";
 
 interface Props {
   className?: string;
@@ -19,47 +19,37 @@ export default function UserConnections({
   return (
     <div
       {...props}
-      className={`${props.className} flex flex-col items-start self-stretch gap-6 flex-1`}
+      className={`flex flex-col items-start gap-6 ${props.className}`}
     >
-      {" "}
-      <Heading size="headings" as="h4" className="text-[24px] font-bold">
-        {" "}
-        {headerText}{" "}
-      </Heading>{" "}
-      <div className="flex flex-col gap-4 self-stretch">
-        {" "}
-        <div className="flex justify-between gap-5">
-          {" "}
-          <Text as="p" className="text-[24px] font-normal !text-white">
-            {" "}
+      <Heading as="h4" className="text-2xl font-bold">
+        {headerText}
+      </Heading>
+      <div className="flex flex-col gap-4 w-full">
+        <div className="flex justify-between items-center">
+          <Text as="p" className="text-2xl font-normal text-white">
             {fromAnyoneText}
-          </Text>{" "}
+          </Text>
           <Img
             src="img_contrast.svg"
             width={32}
             height={32}
-            alt="Imageclass"
-            className="h-[32px]"
-          />{" "}
-        </div>{" "}
-        <div>
-          {" "}
-          <div className="flex justify-between gap-5">
-            {" "}
-            <Text as="p" className="text-[24px] font-normal !text-white">
-              {" "}
-              {peopleYouFollowText}{" "}
-            </Text>{" "}
-            <Img
-              src="img_contrast_white.svg"
-              width={32}
-              height={32}
-              alt="Imageclass"
-              className="h-[32px]"
-            />{" "}
-          </div>{" "}
-        </div>{" "}
-      </div>{" "}
+            alt="From anyone"
+            className="h-8"
+          />
+        </div>
+        <div className="flex justify-between items-center">
+          <Text as="p" className="text-2xl font-normal text-white">
+            {peopleYouFollowText}
+          </Text>
+          <Img
+            src="img_contrast_white.svg"
+            width={32}
+            height={32}
+            alt="People you follow"
+            className="h-8"
+          />
+        </div>
+      </div>
     </div>
   );
 }

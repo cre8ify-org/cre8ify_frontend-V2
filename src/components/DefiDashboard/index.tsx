@@ -1,7 +1,7 @@
+import type React from "react";
 import { Img } from "../Img";
 import { Text } from "../Text";
 import { Heading } from "../Heading";
-import React from "react";
 
 interface Props {
   className?: string;
@@ -19,31 +19,26 @@ export default function DeFiDashboard({
   return (
     <div
       {...props}
-      className={`${props.className} flex justify-center items-center self-stretch px-4 flex-1`}
+      className={`flex items-center justify-center px-4 ${props.className}`}
     >
-      {" "}
-      <div className="flex flex-1 flex-col items-start gap-2">
-        {" "}
-        <Text as="p" className="text-[24px] font-normal !text-white">
-          {" "}
-          {decentralizedFinanceText}{" "}
-        </Text>{" "}
-        <Heading size="headings" as="h4" className="text-[24px] font-bold">
-          {" "}
-          {yieldFarmingText}{" "}
-        </Heading>{" "}
-        <Text as="p" className="text-[24px] font-normal !text-white">
-          {" "}
-          {postsCounterText}{" "}
-        </Text>{" "}
-      </div>{" "}
+      <div className="flex flex-col items-start gap-2">
+        <Text as="p" className="text-2xl text-white">
+          {decentralizedFinanceText}
+        </Text>
+        <Heading as="h4" className="text-2xl font-bold">
+          {yieldFarmingText}
+        </Heading>
+        <Text as="p" className="text-2xl text-white">
+          {postsCounterText}
+        </Text>
+      </div>
       <Img
         src="img_notification_tech_silver_0.svg"
         width={32}
         height={32}
-        alt="Notificationsim"
-        className="h-[32px]"
-      />{" "}
+        alt="Notifications"
+        className="h-8"
+      />
     </div>
   );
 }

@@ -36,7 +36,7 @@ export const Wallet = ({ children }: { children: ReactNode }) => {
               if (!connected) {
                 return (
                   <button
-                    className="flex h-[48px] min-w-[196px] flex-row items-center justify-center rounded-[24px] bg-gradient px-[34px] text-center text-[16px] font-medium text-midnight_black lg:text-[13px] sm:px-4"
+                    className="flex h-[48px] min-w-[180px] flex-row items-center justify-center rounded-[24px] bg-gradient px-[34px] text-center text-[16px] font-medium text-midnight_black lg:text-[13px] sm:px-4"
                     onClick={openConnectModal}
                     type="button"
                   >

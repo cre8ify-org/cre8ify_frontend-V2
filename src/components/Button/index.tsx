@@ -1,4 +1,5 @@
-import React from "react";
+import type React from "react";
+
 type ButtonProps = Omit<
   React.DetailedHTMLProps<
     React.ButtonHTMLAttributes<HTMLButtonElement>,
@@ -12,6 +13,7 @@ type ButtonProps = Omit<
     rightIcon: React.ReactNode;
     onClick: () => void;
   }>;
+
 const Button: React.FC<React.PropsWithChildren<ButtonProps>> = ({
   children,
   className = "",
@@ -20,10 +22,12 @@ const Button: React.FC<React.PropsWithChildren<ButtonProps>> = ({
   ...restProps
 }) => {
   return (
-    <button className={`${className} `} {...restProps}>
-      {" "}
-      {!!leftIcon && leftIcon} {children} {!!rightIcon && rightIcon}{" "}
+    <button className={className} {...restProps}>
+      {leftIcon}
+      {children}
+      {rightIcon}
     </button>
   );
 };
+
 export { Button };

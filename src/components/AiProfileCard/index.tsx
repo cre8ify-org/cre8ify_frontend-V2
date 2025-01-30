@@ -1,7 +1,7 @@
+import type React from "react";
 import { Img } from "../Img";
 import { Text } from "../Text";
 import { Heading } from "../Heading";
-import React from "react";
 
 interface Props {
   className?: string;
@@ -21,43 +21,32 @@ export default function AiProfileCard({
   ...props
 }: Props) {
   return (
-    <div
-      {...props}
-      className={`${props.className} flex items-center self-stretch gap-6 flex-1`}
-    >
-      {" "}
+    <div {...props} className={`flex items-center gap-6 ${props.className}`}>
       <Img
         src={userImage}
         width={268}
         height={168}
-        alt="Mostpowerfulaii"
+        alt="AI Profile"
         className="h-[168px] w-[52%] rounded-[16px] object-contain"
-      />{" "}
-      <div className="flex flex-1 flex-col gap-4 sm:self-stretch">
-        {" "}
+      />
+      <div className="flex flex-col gap-4">
         <div className="flex flex-col items-start gap-2">
-          {" "}
-          <Heading as="h2" className="w-full text-[32px] font-bold leading-10">
-            {" "}
-            {titleText}{" "}
-          </Heading>{" "}
-          <Text as="p" className="text-[24px] font-normal !text-white">
-            {" "}
-            {authorName}{" "}
-          </Text>{" "}
-        </div>{" "}
-        <div className="flex flex-wrap justify-between gap-5">
-          {" "}
-          <Text as="p" className="text-[24px] font-normal !text-white">
-            {" "}
-            {viewsCount}{" "}
-          </Text>{" "}
-          <Text as="p" className="text-[24px] font-normal !text-white">
-            {" "}
-            {duration}{" "}
-          </Text>{" "}
-        </div>{" "}
-      </div>{" "}
+          <Heading as="h2" className="text-3xl font-bold leading-10">
+            {titleText}
+          </Heading>
+          <Text as="p" className="text-2xl text-white">
+            {authorName}
+          </Text>
+        </div>
+        <div className="flex justify-between gap-5">
+          <Text as="p" className="text-2xl text-white">
+            {viewsCount}
+          </Text>
+          <Text as="p" className="text-2xl text-white">
+            {duration}
+          </Text>
+        </div>
+      </div>
     </div>
   );
 }

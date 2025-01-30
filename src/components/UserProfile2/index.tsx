@@ -1,12 +1,12 @@
-import { Text } from "../Text";
-import { Img } from "../Img";
-import React from "react";
+import type React from "react"
+import { Text } from "../Text"
+import { Img } from "../Img"
 
 interface Props {
-  className?: string;
-  userImage?: string;
-  userName?: React.ReactNode;
-  userStatus?: React.ReactNode;
+  className?: string
+  userImage?: string
+  userName?: React.ReactNode
+  userStatus?: React.ReactNode
 }
 
 export default function UserProfile2({
@@ -16,35 +16,17 @@ export default function UserProfile2({
   ...props
 }: Props) {
   return (
-    <div
-      {...props}
-      className={`${props.className} flex justify-center items-center self-stretch p-2 flex-1 rounded-[16px]`}
-    >
-      {" "}
-      <div className="flex flex-1 items-center gap-6">
-        {" "}
-        <div className="w-[16%] rounded-[16px] bg-dark_gray">
-          <Img
-            src={userImage}
-            width={64}
-            height={64}
-            alt="Image"
-            className="h-[64px] w-full rounded-[16px] object-cover"
-          />{" "}
-        </div>{" "}
-        <Text as="p" className="text-[24px] font-normal !text-white">
-          {" "}
-          {userName}{" "}
-        </Text>{" "}
-      </div>{" "}
-      <Text
-        size="dm_sans_14"
-        as="p"
-        className="flex items-center justify-center rounded-lg bg-blue-900 px-2 py-0.5 text-[20px] font-normal !text-white"
-      >
-        {" "}
-        {userStatus}{" "}
-      </Text>{" "}
+    <div {...props} className={`flex items-center justify-between p-2 rounded-2xl ${props.className}`}>
+      <div className="flex items-center gap-6">
+        <Img src={userImage} width={64} height={64} alt="User avatar" className="rounded-2xl" />
+        <Text as="p" className="text-2xl text-white">
+          {userName}
+        </Text>
+      </div>
+      <Text as="p" className="px-2 py-0.5 text-xl text-white bg-blue-900 rounded-lg">
+        {userStatus}
+      </Text>
     </div>
-  );
+  )
 }
+

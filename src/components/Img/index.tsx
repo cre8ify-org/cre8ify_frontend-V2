@@ -1,6 +1,7 @@
 "use client";
 
-import React from "react";
+import type React from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 
 const BASE_URL = process.env.BASE_PATH || "/images/";
@@ -17,6 +18,7 @@ type ImgProps = React.DetailedHTMLProps<
     width: number;
     height: number;
   }>;
+
 const Img: React.FC<React.PropsWithChildren<ImgProps>> = ({
   className,
   src = "defaultNoData.png",
@@ -26,10 +28,12 @@ const Img: React.FC<React.PropsWithChildren<ImgProps>> = ({
   height,
   ...restProps
 }) => {
-  const [imgSrc, setImgSrc] = React.useState(src);
-  React.useEffect(() => {
+  const [imgSrc, setImgSrc] = useState(src);
+
+  useEffect(() => {
     setImgSrc(src);
   }, [src]);
+
   return (
     <Image
       className={className}
@@ -46,4 +50,5 @@ const Img: React.FC<React.PropsWithChildren<ImgProps>> = ({
     />
   );
 };
+
 export { Img };
