@@ -3,8 +3,8 @@
 import type React from "react";
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { CloseSVG } from "../Input/close";
-import { Img } from "../Img";
 import { Input } from "../Input";
 import { Wallet } from "../Wallet";
 import { CREATIFI_SVG } from "../../assets/svg";
@@ -23,13 +23,7 @@ export default function Header({ ...props }: Props) {
     >
       <div className="flex justify-center">
         <div className="container-xs flex items-center justify-between gap-5 lg:px-5 md:flex-col">
-          <Img
-            src="img_header_logo.png"
-            width={66}
-            height={54}
-            alt="Header logo"
-            className="h-[54px] w-[66px] object-contain"
-          />
+          {CREATIFI_SVG().logo()}
           <div className="flex w-3/4 justify-between gap-5 md:w-full md:flex-col">
             <Input
               className="search_border flex h-12 w-2/3 items-center justify-center gap-2 rounded-full px-2.5 text-base font-medium text-tech_silver-0 md:w-full"
@@ -59,14 +53,21 @@ export default function Header({ ...props }: Props) {
             <div className="flex gap-[30px]">
               <Wallet>Connect Wallet</Wallet>
               <div className="flex items-center gap-6">
-                <Link href="#">{CREATIFI_SVG().notificationBell()}</Link>
-                <Link href="#">
-                  <Img
-                    src="img_image_1.png"
+                <Link href="/notification">
+                  <Image
+                    src="/images/notificationBell.png"
+                    width={24}
+                    height={24}
+                    alt="notificationBell"
+                  />
+                </Link>
+                <Link href="/profile">
+                  <Image
+                    src="/images/Frame 30139.png"
                     width={48}
                     height={48}
                     alt="User"
-                    className="h-12 rounded-full object-cover"
+                    className="rounded-full object-cover"
                   />
                 </Link>
               </div>

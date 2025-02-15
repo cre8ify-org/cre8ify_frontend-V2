@@ -10,8 +10,8 @@ interface Props {
 }
 
 export default function UserProfile({
-  videoImageSrc = "img_image_4.png",
-  profileImageSrc = "img_image_5.png",
+  videoImageSrc = "image-1.png",
+  profileImageSrc = "image-5.png",
   profileName = "Andy James",
   ...props
 }: Props) {
@@ -25,7 +25,7 @@ export default function UserProfile({
         width={170}
         height={284}
         alt="Video"
-        className="rounded-2xl object-cover"
+        className="rounded-2xl object-cover w-[170px] h-[ ]"
       />
       <div className="absolute bottom-4 left-0 right-0 mx-auto flex items-center gap-2 rounded-full bg-white px-2 py-1 w-[149px]">
         <Img

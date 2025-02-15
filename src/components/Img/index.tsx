@@ -1,54 +1,63 @@
 "use client";
 
 import type React from "react";
-import { useState, useEffect } from "react";
-import Image from "next/image";
+import { useState } from "react";
+import NextImage, { type ImageProps as NextImageProps } from "next/image";
 
-const BASE_URL = process.env.BASE_PATH || "/images/";
+export interface ImageProps extends Omit<NextImageProps, "src"> {
+  src: string;
+  fallbackSrc?: string;
+  alt: string;
+  className?: string;
+}
 
-type ImgProps = React.DetailedHTMLProps<
-  React.ImgHTMLAttributes<HTMLImageElement>,
-  HTMLImageElement
-> &
-  Partial<{
-    className: string;
-    src: string;
-    alt: string;
-    isStatic: boolean;
-    width: number;
-    height: number;
-  }>;
-
-const Img: React.FC<React.PropsWithChildren<ImgProps>> = ({
-  className,
-  src = "defaultNoData.png",
-  alt = "testImg",
-  isStatic = false,
-  width,
-  height,
-  ...restProps
-}) => {
-  const [imgSrc, setImgSrc] = useState(src);
-
-  useEffect(() => {
-    setImgSrc(src);
-  }, [src]);
-
-  return (
-    <Image
-      className={className}
-      src={isStatic ? imgSrc : BASE_URL + imgSrc}
-      alt={alt}
-      width={width}
-      height={height}
-      {...restProps}
-      onError={() => {
-        setImgSrc(
-          isStatic ? `${BASE_URL}defaultNoData.png` : "defaultNoData.png"
-        );
-      }}
-    />
-  );
+const normalizeSrc = (src: string): string => {
+  if (
+    src.startsWith("http://") ||
+    src.startsWith("https://") ||
+    src.startsWith("/")
+  ) {
+    return src;
+  }
+  return `/${src}`;
 };
 
-export { Img };
+export const Img: React.FC<ImageProps> = ({
+  src,
+  fallbackSrc = "/images/placeholder.png",
+  alt,
+  className = "",
+  width,
+  height,
+  ...props
+}) => {
+  const [imgSrc, setImgSrc] = useState(normalizeSrc(src));
+  const [isLoading, setIsLoading] = useState(true);
+
+  const handleError = () => {
+    setImgSrc(normalizeSrc(fallbackSrc));
+  };
+
+  const handleLoad = () => {
+    setIsLoading(false);
+  };
+
+  return (
+    <div className={`relative ${className}`}>
+      {isLoading && (
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-200 animate-pulse">
+          Loading...
+        </div>
+      )}
+      <NextImage
+        src={imgSrc || "/placeholder.svg"}
+        alt={alt}
+        width={width}
+        height={height}
+        onError={handleError}
+        onLoad={handleLoad}
+        {...props}
+      />
+    </div>
+  );
+};

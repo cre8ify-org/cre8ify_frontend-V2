@@ -1,11 +1,12 @@
 "use client";
 
 import React from "react";
-import { Img } from "../Img";
 import { MenuItem, Menu, Sidebar } from "react-pro-sidebar";
 import { CREATIFI_SVG } from "@/assets/svg";
 import { Button } from "../Button";
 import Link from "next/link";
+import { Text } from "../Text";
+import { NavBarLinks } from "@/lib/config/site";
 
 interface Props {
   className?: string;
@@ -22,55 +23,27 @@ export default function Sidebar2({ ...props }: Props) {
       collapsed={collapsed}
       className={`flex flex-col h-[88vh] pt-2 top-0 !border-r-dark_gray bg-midnight_black sticky overflow-auto md:hidden ${props.className}`}
     >
-      <Menu
-        menuItemStyles={{
-          button: {
-            padding: "24px",
-            backgroundColor: "#121212",
-            color: "#b0b0b0",
-            fontWeight: 400,
-            fontSize: "14px",
-          },
-        }}
-        className="w-full"
-      >
-        <div className="flex flex-col gap-2">
+      <Menu className="w-full">
+        <div className="flex flex-col gap-2 items-center">
           <div>Menu</div>
-          <Link href="#">
-            <MenuItem icon={CREATIFI_SVG().homeIcon()} />
-          </Link>
-          <MenuItem>Explore</MenuItem>
-          <MenuItem>Notification</MenuItem>
-          <MenuItem>Wallet</MenuItem>
-          <MenuItem>Profile</MenuItem>
-          <MenuItem>Setting</MenuItem>
+          {NavBarLinks.map((link) => (
+            <Link
+              href={link.link}
+              key={link.link}
+              className="py-[20px] flex flex-col items-center text-tech_silver-1 text-[14px]"
+            >
+              {link.icon}
+              {link.name}
+              {/* <Text className="text-tech_silver-1"></Text> */}
+            </Link>
+          ))}
         </div>
         <div className="mx-3 h-px bg-blue_gray-900" />
         <div className="mt-[30px]">
-          <MenuItem
-            icon={
-              <Img
-                src="img_plus.svg"
-                width={32}
-                height={32}
-                alt="Plus"
-                className="h-8 w-8"
-              />
-            }
-          />
+          <MenuItem>{CREATIFI_SVG().createIcon()}</MenuItem>
         </div>
         <div className="mt-[116px]">
-          <MenuItem
-            icon={
-              <Img
-                src="img_arrow_down.svg"
-                width={40}
-                height={40}
-                alt="Arrow down"
-                className="h-10 w-10"
-              />
-            }
-          />
+          <MenuItem>{CREATIFI_SVG().logoutIcon()}</MenuItem>
         </div>
       </Menu>
     </Sidebar>
