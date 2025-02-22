@@ -23,9 +23,10 @@ export default function UserProfile({
       <Img
         src={videoImageSrc}
         width={170}
-        height={284}
+        height={"100%"}
         alt="Video"
-        className="rounded-2xl object-cover w-[170px] h-[ ]"
+        className="rounded-2xl object-cover w-[170px] h-full"
+        style={{ borderRadius: "1rem" }}
       />
       <div className="absolute bottom-4 left-0 right-0 mx-auto flex items-center gap-2 rounded-full bg-white px-2 py-1 w-[149px]">
         <Img
@@ -34,6 +35,7 @@ export default function UserProfile({
           height={32}
           alt="Profile"
           className="h-8 rounded-full object-cover"
+          style={{ borderRadius: "9999px" }}
         />
         <Text as="p" className="text-base font-medium text-black">
           {profileName}

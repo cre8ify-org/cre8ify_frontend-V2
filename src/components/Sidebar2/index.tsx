@@ -1,20 +1,21 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { MenuItem, Menu, Sidebar } from "react-pro-sidebar";
 import { CREATIFI_SVG } from "@/assets/svg";
 import { Button } from "../Button";
 import Link from "next/link";
 import { Text } from "../Text";
 import { NavBarLinks } from "@/lib/config/site";
+import { PostModal } from "../PostModal";
 
 interface Props {
   className?: string;
 }
 
 export default function Sidebar2({ ...props }: Props) {
-  const [collapsed, setCollapsed] = React.useState(false);
-
+  const [collapsed, setCollapsed] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <Sidebar
       {...props}
@@ -34,18 +35,20 @@ export default function Sidebar2({ ...props }: Props) {
             >
               {link.icon}
               {link.name}
-              {/* <Text className="text-tech_silver-1"></Text> */}
             </Link>
           ))}
         </div>
         <div className="mx-3 h-px bg-blue_gray-900" />
         <div className="mt-[30px]">
-          <MenuItem>{CREATIFI_SVG().createIcon()}</MenuItem>
+          <MenuItem onClick={() => setIsModalOpen(true)}>
+            {CREATIFI_SVG().createIcon()}
+          </MenuItem>
         </div>
         <div className="mt-[116px]">
           <MenuItem>{CREATIFI_SVG().logoutIcon()}</MenuItem>
         </div>
       </Menu>
+      <PostModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </Sidebar>
   );
 }

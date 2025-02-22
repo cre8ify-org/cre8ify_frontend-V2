@@ -30,6 +30,7 @@ export default function UserProfile1({
           height={56}
           alt="User avatar"
           className="rounded-full"
+          style={{ borderRadius: "9999px" }}
         />
         <div className="flex flex-col">
           <Heading as="h4" className="text-xl font-bold">

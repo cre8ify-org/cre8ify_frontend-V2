@@ -3,11 +3,15 @@ import { Heading } from "../../components/Heading";
 import UserProfile1 from "../../components/UserProfile1";
 
 const usersToFollow = [
-  { image: "img_image_56x56.png", name: "Ching Lee", handle: "@Leechingwall1" },
-  { image: "img_image_64x64.png", name: "Andy James", handle: "@jamwsandy100" },
-  { image: "img_image_10.png", name: "Kilid Mbappe", handle: "@jmpappepsg1" },
+  { image: "/images/user-1.png", name: "Ching Lee", handle: "@Leechingwall1" },
+  { image: "images/image-5.png", name: "Andy James", handle: "@jamwsandy100" },
   {
-    image: "img_image_11.png",
+    image: "/images/image-7.png",
+    name: "Kilid Mbappe",
+    handle: "@jmpappepsg1",
+  },
+  {
+    image: "/images/user-3.png",
     name: "Daniel Messang",
     handle: "@danielmessang01",
   },

@@ -1,4 +1,6 @@
-import React, { Suspense } from "react";
+"use client";
+
+import React, { Suspense, useState } from "react";
 import { Heading, Button, Text } from "../../components";
 import DeFiInfoSection from "../../components/DefiInfoSection";
 import Header from "../../components/Header";
@@ -9,6 +11,7 @@ import Home1Columnuserhandl from "./Home1Columnuserhandle";
 import Link from "next/link";
 import { CREATIFI_SVG } from "@/assets/svg";
 import Image from "next/image";
+import { PostModal } from "@/components/PostModal";
 
 const trendingTopics = [
   {
@@ -47,17 +50,18 @@ const trendingClips = [
   },
   {
     videoSrc: "/images/image-3.png",
-    profileSrc: "/images/image-7.png",
+    profileSrc: "/images/image-8.png",
     name: "Daniels Kings",
   },
   {
     videoSrc: "/images/image-4.png",
-    profileSrc: "/images/image-8.png",
+    profileSrc: "/images/image-7.png",
     name: "Kilid Mbappe",
   },
 ];
 
 export default function HomePage() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <div className="bg-midnight_black h-screen">
       <Header />
@@ -84,7 +88,10 @@ export default function HomePage() {
               </Link>
             </nav>
           </div>
-          <div className="border border-dark_gray rounded-2xl p-4 mb-12">
+          <div
+            className="border border-dark_gray rounded-2xl p-4 mb-12 cursor-pointer"
+            onClick={() => setIsModalOpen(true)}
+          >
             <div className="flex items-center gap-6 border border-dark_gray rounded-full p-2 mb-4">
               <Image
                 src="/images/Frame 30139.png"
@@ -103,8 +110,8 @@ export default function HomePage() {
                   CREATIFI_SVG().imageIcon(),
                   CREATIFI_SVG().recordIcon(),
                   CREATIFI_SVG().audioIcon(),
-                ].map((icon) => (
-                  <div>{icon}</div>
+                ].map((icon, index) => (
+                  <div key={index}>{icon}</div>
                 ))}
               </div>
               <Button className="px-6 py-3 rounded-full bg-gradient text-midnight_black">
@@ -165,6 +172,7 @@ export default function HomePage() {
         </aside>
         {/* </main> */}
       </div>
+      <PostModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   );
 }

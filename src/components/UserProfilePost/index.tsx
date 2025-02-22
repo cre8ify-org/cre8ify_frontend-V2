@@ -2,28 +2,39 @@ import type React from "react";
 import { Img } from "../Img";
 import { Text } from "../Text";
 import { Heading } from "../Heading";
+import { CREATIFI_SVG } from "@/assets/svg";
+import Image from "next/image";
 
 interface Props {
   className?: string;
+  profileImg?: string;
   userName?: React.ReactNode;
   timeAgo?: React.ReactNode;
   twitterHandle?: React.ReactNode;
-  beatmyblack?: React.ReactNode;
+  content?: React.ReactNode;
   likesCount?: React.ReactNode;
   commentsCount?: React.ReactNode;
   favoritesCount?: React.ReactNode;
 }
 
 export default function UserProfilePost({
+  profileImg = "/images/user-1.png",
   userName = "Ching Lee",
   timeAgo = "- 6hrs ago",
   twitterHandle = "@Leechingwall1",
-  beatmyblack = (
-    <>
-      Beat my black background wallpaper
-      <br />
-      Share your in comment👇
-    </>
+  content = (
+    <div className="flex flex-col gap-6">
+      <Text as="p" className="text-lg leading-8 text-white">
+        Beat my black background wallpaper
+        <br />
+        Share your in comment👇
+      </Text>
+      <img
+        src="/images/post-1.png"
+        alt="Post image"
+        className="w-full rounded-2xl object-cover"
+      />
+    </div>
   ),
   likesCount = "56",
   commentsCount = "72",
@@ -35,11 +46,12 @@ export default function UserProfilePost({
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
           <Img
-            src="img_image.png"
+            src={profileImg}
             width={56}
             height={56}
             alt="User avatar"
             className="rounded-full"
+            style={{ borderRadius: "9999px" }}
           />
           <div>
             <div className="flex gap-2 items-center">
@@ -55,27 +67,10 @@ export default function UserProfilePost({
             </Text>
           </div>
         </div>
-        <Img
-          src="img_notification.svg"
-          width={24}
-          height={24}
-          alt="Notification"
-          className="h-6"
-        />
+        <div>{CREATIFI_SVG().moreIcon()}</div>
       </div>
       <div className="flex flex-col gap-8">
-        <div className="flex flex-col gap-6">
-          <Text as="p" className="text-lg leading-8 text-white">
-            {beatmyblack}
-          </Text>
-          <Img
-            src="img_image_524x916.png"
-            width={916}
-            height={524}
-            alt="Post image"
-            className="w-full rounded-2xl object-cover"
-          />
-        </div>
+        <div>{content}</div>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Img
